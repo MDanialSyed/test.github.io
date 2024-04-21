@@ -7,8 +7,8 @@ paginate: 5
 language: 'en-uk'
 
 # Website info
-name: 'Finding The Way Home'
-description: "A beautiful narrative written with the world's most elegant publishing platform. The story begins here."
+name: 'AI and Machine Learning for Climate Change'
+description: "Welcome to my personal website! Here I dive into my research and experiences with using data science for energy & environment challenges."
 
 short_url: 'mdanialsyed.github.io'
 google_analytics: UA-69281367-1
