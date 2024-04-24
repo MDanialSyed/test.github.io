@@ -21,6 +21,8 @@ My surveying lead me to some groundbreaking research from Stanford University th
 
 However, of course satellite imagery does not explicitly capture the vast differences in wealth between regions of a country. Therefore, transfer learning is deployed to help the model extract economically relevant features from thousands of unstructured satellite images. More specifically, higher nightlights intensity typically indicates a given region is more developed than a region with lower nightlights. This nightlight data can be used to extract landscape features in daytime imagery that are correlated with economic outcomes, such as roads, farmlands, waterways, roof, and urban areas. In the final step, the trained model can be used to predict village level wealth as measured by traditional surveys. 
 
+![Book logo](/assets/images/hl_ll.png)
+
 The contribution of my project was to create a seamless, reproducible workflow for the original study, to exemplify how unconventional forms of data can be easily integrated into economists’ research and programming pipelines. The layout of the original replication kit and related repositories on GitHub involved considerable work to obtain and manage the data, and run several scripts in a particular order to produce the desired results. I felt this complexity may disincentivize the ability of new users to alter model parameters and build on the authors’ work. I ameliorated this issue by integrating all scripts and tasks in a coordinated ‘pytask‘ framework. In doing so, I utilized the CNN method to estimate consumption expenditure in Malawi and attempt to match the R2 from the authors’ model, with an emphasis on highlighting the several programming steps involved in such an analysis, from data collection to prediction. 
 
 ## Overview 
@@ -32,8 +34,6 @@ My project’s CNN model training had the following structure which used nightli
 4. Train ridge regression on the principal components of the feature matrix and generate predicted consumption in the validation set. 
 
 Although the technicalities of CNN are beyond the scope of such a blog post (for this I refer to the project’s full technical report if you're interested!), I will briefly provide some intuition on transfer learning: nightlights were used as a proxy for economic activity and then the CNN model took as input thousands of satellite imagery and used that to predict variation in nightlight intensities.
-
-![Book logo](/assets/images/hl_ll.png)
 
  This is a transfer learning strategy in which the model receives no human input that these images are in any way useful for predicting economic activity or estimating consumption expenditures; it only learns to identify those features in satellite images that are relevant for predicting nightlights. The output of this step is a trained model capable of reducing high-dimensional imagery inputs to low-dimensional features relevant for predicting the variation in nightlights. 
 
