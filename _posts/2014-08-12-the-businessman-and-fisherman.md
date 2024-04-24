@@ -59,3 +59,10 @@ In general, ML models trained with CNN features data have a lower R2 compared to
 The project not only demonstrated the potential of CNNs and satellite imagery to predict poverty but also highlighted the broader applicability of AI in socioeconomic research. By successfully mapping poverty in Malawi, I provided a reproducible template that can be replicated or adapted for other regions facing similar challenges.
 
 The use of satellite imagery has opened up new avenues for using advanced technology to tackle some of the most pressing global issues. The integration of AI and satellite imagery in this context not only offers a more efficient alternative to traditional methods relying on household survey data but also enriches our understanding and approach to global development challenges.
+
+## References
+
+
+Inkawhich, Nathan (2022). Finetuning Torchvision Models Kernel Description. url: https:// pytorch.org/tutorials/beginner/finetuning_torchvision_models_tutorial.html.
+
+Jean, Neal, Marshall Burke, Michael Xie, W Matthew Davis, David B Lobell, and Stefano Ermon (2016). “Combining satellite imagery and machine learning to predict poverty”. In: Science 353.6301, pp. 790–794.
