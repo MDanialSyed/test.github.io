@@ -12,7 +12,10 @@ categories: Machine Learning
 ---
 ## Backgound
 
-<img src="/assets/images/high_light.png" alt="Book logo" width="200"/> <img src="/assets/images/active_hl.png" alt="Book logo" width="200"/>
+<div>
+  <img src="/assets/images/high_light.png" alt="Book logo" width="200" style="display: inline-block;"/>
+  <img src="/assets/images/active_hl.png" alt="Book logo" width="200" style="display: inline-block;"/>
+</div>
 
 
 My last flagship project at University of Bonn began in the Winter of 2022/23. That semester, I selected the course, ***Effective Programming for Economists*** (taught by Dr. Janos Gabler), which delved into the various aspects of learning to think and write about code efficiently in Python. That this was likely my last course as a Master student, I was highly motivated to see just how far I could push myself from my comfort zone with Python using the technical skills we were fast learning in the course. And so I deliberated during the initial weeks on a topic that would be 1) an application of machine learning to a real world problem and 2) be one that I could feasibly code and polish within the four month timeline. During this time, I was a student assistant in the Institute of Environment and Human Security at United Nations in Bonn, and so I was also inspired to tackle problems related to advancing human welfare.
@@ -43,7 +46,8 @@ Although the technicalities of CNN are beyond the scope of such a blog post (for
 
 The training phase involved using a Gaussian Mixture Model to categorize the satellite images based on nightlight intensity. This categorization facilitated more focused training of the CNN, allowing it to predict poverty levels with higher accuracy. After training, the CNN was able to transform high-dimensional image data into feature vectors that effectively represented different poverty levels.
 
-![Book logo](/assets/images/gmm.png)
+<img src="/assets/images/gmm.png" alt="Book logo" width="300"/>
+
 
 Here I drew on the Pytorch library which consists of a range of CNN model choices and used the finetuning functions written by Inkawhich (2022) for implementation. The code was modified so that the first 2 epochs perform fine-tuning - that is, updating all model parameters, and after that perform feature extraction where only the output layer weights are updated taking the pre-trained model parameters are given.
 
