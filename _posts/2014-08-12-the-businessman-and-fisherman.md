@@ -36,7 +36,7 @@ My project’s CNN model training had the following structure which used nightli
 
 Although the technicalities of CNN are beyond the scope of such a blog post (for this I refer to the project’s full technical report if you're interested!), I will briefly provide some intuition on transfer learning: nightlights were used as a proxy for economic activity and then the CNN model took as input thousands of satellite imagery and used that to predict variation in nightlight intensities.
 
-'assets/images/hl_ll.png'
+![Book logo](/assets/images/hl_ll.png)
 
  This is a transfer learning strategy in which the model receives no human input that these images are in any way useful for predicting economic activity or estimating consumption expenditures; it only learns to identify those features in satellite images that are relevant for predicting nightlights. The output of this step is a trained model capable of reducing high-dimensional imagery inputs to low-dimensional features relevant for predicting the variation in nightlights. 
 
@@ -44,7 +44,7 @@ Although the technicalities of CNN are beyond the scope of such a blog post (for
 
 The training phase involved using a Gaussian Mixture Model to categorize the satellite images based on nightlight intensity. This categorization facilitated more focused training of the CNN, allowing it to predict poverty levels with higher accuracy. After training, the CNN was able to transform high-dimensional image data into feature vectors that effectively represented different poverty levels.
 
-'assets/images/gmm.png'
+![Book logo](/assets/images/gmm.png)
 
 Here I drew on the Pytorch library which consists of a range of CNN model choices and used the finetuning functions written by Inkawhich (2022) for implementation. The code was modified so that the first 2 epochs perform fine-tuning - that is, updating all model parameters, and after that perform feature extraction where only the output layer weights are updated taking the pre-trained model parameters are given.
 
@@ -56,7 +56,7 @@ However, using such a high dimensional dataset for prediction can be time consum
 
 In general, ML models trained with CNN features data have a lower R2 compared to models trained with nightlight data using either 5-fold or 10-fold cross validation. Some models such as XGBoost perform poorly when trained on the nightlight data or CNN features data whereas Random Forest is improved using latter. Ridge Regression appears to be among the best performing models. Therefore, as a final illustration I plot the actual consumption values against values predicted by a cross-validated ridge regression using the first thirty PCs from CNN features data.
 
-'assets/images/prediction.png'
+![Book logo](/assets/images/prediction.png)
 
 ## Conclusion and Reflection
 
