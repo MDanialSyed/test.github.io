@@ -1,6 +1,6 @@
 ---
 layout: post
-cover: 'assets/images/cover7.jpg'
+cover: 'assets/images/sidebyside.png'
 navigation: True
 title: Novel Approach to Leveraging ML to Combat Poverty in Sparse Data Settings
 date: 2023-02-29 10:18:00
@@ -12,7 +12,6 @@ categories: Machine Learning
 ---
 ## Backgound
 
-<img src="/assets/images/sidebyside.png" alt="Book logo" width="450"/>
 
 My last flagship project at University of Bonn began in the Winter of 2022/23. That semester, I selected the course, ***Effective Programming for Economists*** (taught by Dr. Janos Gabler), which delved into the various aspects of learning to think and write about code efficiently in Python. That this was likely my last course as a Master student, I was highly motivated to see just how far I could push myself from my comfort zone with Python using the technical skills we were fast learning in the course. And so I deliberated during the initial weeks on a topic that would be 1) an application of machine learning to a real world problem and 2) be one that I could feasibly code and polish within the four month timeline. During this time, I was a student assistant in the Institute of Environment and Human Security at United Nations in Bonn, and so I was also inspired to tackle problems related to advancing human welfare.
 
@@ -51,8 +50,9 @@ The trained CNN model then extracted feature vectors for each image in the valid
 
 However, using such a high dimensional dataset for prediction can be time consuming and caused convergence issues when training certain ML models. Therefore, instead of using the entire feature matrix for training these models, I first performed dimensionality reduction guided by principal component (PC) analysis.
 
-In general, ML models trained with CNN features data have a lower R2 compared to models trained with nightlight data using either 5-fold or 10-fold cross validation. Some models such as XGBoost perform poorly when trained on the nightlight data or CNN features data whereas Random Forest is improved using latter. Ridge Regression appears to be among the best performing models. Therefore, as a final illustration I plot the actual consumption values against values predicted by a cross-validated ridge regression using the first thirty PCs from CNN features data.
 <img src="/assets/images/prediction.png" alt="Book logo" width="450"/>
+
+In general, ML models trained with CNN features data have a lower R2 compared to models trained with nightlight data using either 5-fold or 10-fold cross validation. Some models such as XGBoost perform poorly when trained on the nightlight data or CNN features data whereas Random Forest is improved using latter. Ridge Regression appears to be among the best performing models. Therefore, as a final illustration I plot the actual consumption values against values predicted by a cross-validated ridge regression using the first thirty PCs from CNN features data.
 
 ## Conclusion and Reflection
 
