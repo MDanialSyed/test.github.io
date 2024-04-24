@@ -45,7 +45,7 @@ Although the technicalities of CNN are beyond the scope of such a blog post (for
 
 The training phase involved using a Gaussian Mixture Model to categorize the satellite images based on nightlight intensity. This categorization facilitated more focused training of the CNN, allowing it to predict poverty levels with higher accuracy. After training, the CNN was able to transform high-dimensional image data into feature vectors that effectively represented different poverty levels.
 
-<img src="/assets/images/gmm.png" alt="Book logo" width="400"/>
+<img src="/assets/images/gmm.png" alt="Book logo" width="450"/>
 
 
 Here I drew on the Pytorch library which consists of a range of CNN model choices and used the finetuning functions written by Inkawhich (2022) for implementation. The code was modified so that the first 2 epochs perform fine-tuning - that is, updating all model parameters, and after that perform feature extraction where only the output layer weights are updated taking the pre-trained model parameters are given.
@@ -58,7 +58,7 @@ However, using such a high dimensional dataset for prediction can be time consum
 
 In general, ML models trained with CNN features data have a lower R2 compared to models trained with nightlight data using either 5-fold or 10-fold cross validation. Some models such as XGBoost perform poorly when trained on the nightlight data or CNN features data whereas Random Forest is improved using latter. Ridge Regression appears to be among the best performing models. Therefore, as a final illustration I plot the actual consumption values against values predicted by a cross-validated ridge regression using the first thirty PCs from CNN features data.
 
-![Book logo](/assets/images/prediction.png)
+<img src="/assets/images/prediction.png" alt="Book logo" width="450"/>
 
 ## Conclusion and Reflection
 
