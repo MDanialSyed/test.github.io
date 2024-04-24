@@ -12,9 +12,8 @@ categories: Machine Learning
 ---
 ## Backgound
 
+<img src="/assets/images/high_light.png" alt="Book logo" width="200"/> <img src="/assets/images/active_hl.png" alt="Book logo" width="200"/>
 
-![Book logo](/assets/images/high_light.png)
-![Book logo](/assets/images/active_hl.png)
 
 My last flagship project at University of Bonn began in the Winter of 2022/23. That semester, I selected the course, ***Effective Programming for Economists*** (taught by Dr. Janos Gabler), which delved into the various aspects of learning to think and write about code efficiently in Python. That this was likely my last course as a Master student, I was highly motivated to see just how far I could push myself from my comfort zone with Python using the technical skills we were fast learning in the course. And so I deliberated during the initial weeks on a topic that would be 1) an application of machine learning to a real world problem and 2) be one that I could feasibly code and polish within the four month timeline. During this time, I was a student assistant in the Institute of Environment and Human Security at United Nations in Bonn, and so I was also inspired to tackle problems related to advancing human welfare.
 
