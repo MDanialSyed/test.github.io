@@ -12,7 +12,7 @@ categories: Machine Learning
 ---
 ## Backgound
 
-<div>
+<div style="text-align: center;">
   <img src="/assets/images/high_light.png" alt="Book logo" width="200" style="display: inline-block;"/>
   <img src="/assets/images/active_hl.png" alt="Book logo" width="200" style="display: inline-block;"/>
 </div>
