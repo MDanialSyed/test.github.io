@@ -2,7 +2,7 @@
 layout: post
 cover: 'assets/images/sidebyside.png'
 navigation: True
-title: Novel Approach to Leveraging ML to Combat Poverty in Sparse Data Settings
+title: Convolutional Neural Networks for Predicting Poverty in Sparse Data Settings
 date: 2023-02-29 10:18:00
 tags: neural networks 
 subclass: 'post tag-test tag-content'
