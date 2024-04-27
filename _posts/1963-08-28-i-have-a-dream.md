@@ -2,16 +2,54 @@
 layout: post
 cover: 'assets/images/cover4.jpg'
 navigation: True
-title: I Have a Dream
+title: Geospatial Economics for Evaluating Land Protection Policies
 date: 1963-08-28 10:18:00
-tags: speeches
-subclass: 'post tag-speeches'
-logo: 'assets/images/ghost.png'
+tags: GIS
+subclass: 'post tag-GIS'
+logo: 'assets/images/ds.png'
 author: martin
 categories: martin
 ---
 
-I am happy to join with you today in what will go down in history as the greatest demonstration for freedom in the history of our nation.
+## Introduction
+
+Without a doubt the best part about joining Wharton was the constant exposure to some of the most innovative methods being deployed at the current frontiers of economic analysis in energy and environment. That applied also to my very first week on the job. Because, for my very first project, I had opportunity to dive head-first into a challenging geospatial economics project, a field which I knew absolutely nothing about at the time.
+
+For this project, my principal investigator, Arthur van Benthem, was seeking to answer the question: to what extent have EU land protection policies actually contributed to the continent's greening and biodivsersity?
+
+The issue of land protection in the face of rapid deforestation and urban sprawl has been a long-standing one, gaining further traction at COP15, with Europe pledging to protect 30% of its land by 2030. An even more recent extension of this was the groundbreaking Kunming-Montreal Global Biodiversity Framework. This pact, signed with a collective sense of urgency by nations around the globe, aims to protect a full 30 percent of our planet's land and water by 2030. It's a bold move to curb the alarming rate at which we're losing diverse species. Europe, not one to lag behind, had by then already safeguarded 26 percent of its landscapes and waterways. 
+
+## Project Overview 
+
+To really assess the effectiveness of Europe's circa 26% protected land in bolstering the region's nature reserves, we needed highly granular datasets for analysis that would:
+
+1) Tell us the land protection status of a given chunk of land.
+1) Measure the green-ing of that land overtime.
+2) Provide other geo-physical land characteristics about the land.
+
+## Data Collection
+
+The raw vector and raster data was obtained fron several sources, for example, NDVI from Google Earth Engine, key agronomic data such as soil suitability from ESDAC, and Europe's protected sites from EEA. The national boundary shapefiles that acted as the 'canvas' of our datasets were obtained from Eurostat. Most these data were freely accessible (although some sources like ESDAC had a request and approval process, so anyone looking to follow along can readily do so. 
+
+National boundaries of EU countries were obtained fom We defined a unit of observation as a 300 metres by 300 metres grid cell that is constant across time. Grid cells divide European country's geographic areas into evenly spaced areas with corners given by latitude and longitude coordinates, and each grid cell is uniquely identified by the combination of its centroid x and y coordinate. These grids are generated for 32 countries listed in the CDDA database. 
+
+More generally, the process of creating geospatial datasets for these countries was... an interesting one. Our primary measure of greenness, Normalized Difference in Vegetation Index (NDVI), was constructed from Landsat images from 1985 through 2019. However, due to presence of dense cloud cover in the months, we constructed an algorithm that used a rolling window to select images that captured the clearest view of a given country's vegetation. 
+
+Moreover, mapping spatial vector data (mostly categorical data such as climate zones and bio-geographical regions) in ArcGIS Pro was tediously slow when done manually for larger country's with several million 300m x 300m grids cells. So instead doing these manually for 32 countries, I created an ArcGIS toolbox to automate this at the country-level and let it run while I enjoyed some peach ice tea (or worked on other more important tasks). 
+
+Finally, the process of extracting raster data (data that utilizes grid-based structure for storing numerical values, mostly continuous phenomenon like NDVI, rainfall etc.) to the country datasets was extremely computationally intensive, even for relatively smaller countries like Switzerland. Eventually, I got fed of R's "vector memory exhausted" errors when running this on my computer and decided to push the process to a better computer; the "Cluster" -  Wharton's in-house High Performance Computing facility. That worked out nicely since the process went from taking several days for a single country to a few hours.
+
+The 32 final datasets corresponding to our sample of 32 EU countries contained 172 variables on forest cover, agronomic characteristics, and spatial information. To the tune of ~100 million data points in total.
+
+## Data Collection
+
+The raw vector and raster data was obtained fron several sources, for example, NDVI from Google Earth Engine, key agronomic data such as soil suitability from ESDAC, and Europe's protected sites from EEA.
+
+
+
+
+
+  I am happy to join with you today in what will go down in history as the greatest demonstration for freedom in the history of our nation.
 
 Five score years ago, a great American, in whose symbolic shadow we stand today, signed the Emancipation Proclamation. This momentous decree came as a great beacon light of hope to millions of Negro slaves who had been seared in the flames of withering injustice. It came as a joyous daybreak to end the long night of their captivity.
 

@@ -62,7 +62,6 @@ The use of satellite imagery has opened up new avenues for using advanced techno
 
 ## References
 
-
 Inkawhich, Nathan (2022). Finetuning Torchvision Models Kernel Description. url: https:// pytorch.org/tutorials/beginner/finetuning_torchvision_models_tutorial.html.
 
 Jean, Neal, Marshall Burke, Michael Xie, W Matthew Davis, David B Lobell, and Stefano Ermon (2016). “Combining satellite imagery and machine learning to predict poverty”. In: Science 353.6301, pp. 790–794.
