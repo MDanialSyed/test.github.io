@@ -39,7 +39,7 @@ As a simple example, at the very basic level I started with a block of Eurostat 
 
 The only way to pre-emptively mitigate against this is to establish an organized workflow from the beginning. Along with this, establishing a file naming convention such as _raw, _clean, _final denoting the various stages of processing of geospatial data. And finally, maintaining thorough documentationn at each step, detailing what was done. As an example, I established the following folder structure for this project (feel free to re-purpose for your own needs):
 
-<insert worflow image>
+![Book logo](/assets/images/workspace_structure.png)
 
 # Data Challenges
 
@@ -60,6 +60,8 @@ It is likely that if you've worked with geospatial data before you may be famili
 This seemed problematic for a couple of reasons: first, obviously due to human error - there is always a chance when doing spatial computations manually that one might select the wrong attribute for a spatial join, set the wrong coordinate reference system, or forget to select certain parameters. Second, what if I need to apply a similar set of spatial processes across multiple countries? This would not only be very time-consuming but also magnify the risk of the previous point.
 
 The trick I learned here is to automate series of spatial processes with the convenient toolbox in ArcGIS or alternatively to write the commands in ArcPy. The Modelbuilder tool in ArcGIS allows you to create DAGs (Directed Acyclic Graphs) to represent geoprocessing workflows and tools. I found these to be a visually appealing and logical way to show the processing steps applied to a country's shapefile, ensuring the ordering of the steps made sense, for example, by repairing the original protected sites shapefile, repairing it to fix topology errors, and then spatially joining it to the country shapefile join. These DAGs also conviently double as documentation, which is an added benefit.
+
+![Book logo](/assets/images/DAG.png)
 
 2) Functions for Raster Processing in R
 
