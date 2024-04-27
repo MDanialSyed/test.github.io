@@ -2,7 +2,7 @@
 layout: post
 cover: 'assets/images/cover4.jpg'
 navigation: True
-title: Geospatial Economics for Evaluating Land Protection Policies
+title: Geospatial Data Science for Evaluating Land Protection Policies
 date: 1963-08-28 10:18:00
 tags: GIS
 subclass: 'post tag-GIS'
@@ -13,15 +13,15 @@ categories: martin
 
 ## Introduction
 
-Without a doubt the best part about joining Wharton was the constant exposure to some of the most innovative methods being deployed at the current frontiers of economic analysis in energy and environment. That applied also to my very first week on the job. Because, for my very first project, I had opportunity to dive head-first into a challenging geospatial economics project, a field which I knew absolutely nothing about at the time.
+Without a doubt the best part about joining Wharton was the exposure to some of the most innovative methods being deployed at the current frontiers of economic analysis in energy and environment. That applied also to my first week in the Business Economics and Public Policy department. Because, for my very first project, I had the pportunity to dive head-first into a challenging geospatial economics project. For this project, my principal investigator, Arthur van Benthem, was seeking to answer the question: to what extent have EU land protection policies actually contributed to the continent's greening and biodiversity?
 
-For this project, my principal investigator, Arthur van Benthem, was seeking to answer the question: to what extent have EU land protection policies actually contributed to the continent's greening and biodivsersity?
-
-The issue of land protection in the face of rapid deforestation and urban sprawl has been a long-standing one, gaining further traction at COP15, with Europe pledging to protect 30% of its land by 2030. An even more recent extension of this was the groundbreaking Kunming-Montreal Global Biodiversity Framework. This pact, signed with a collective sense of urgency by nations around the globe, aims to protect a full 30 percent of our planet's land and water by 2030. It's a bold move to curb the alarming rate at which we're losing diverse species. Europe, not one to lag behind, had by then already safeguarded 26 percent of its landscapes and waterways. 
+Although I had previously worked with geospatial data, namely through my application of Convolutional Neural Networks to satellite images for poverty prediction  in Malawi, I ran into several fun challenges in this project simply because of the scale and richness of data involved. And when I say scale, I mean constructing datasets to the tune of ~100 million data points in total. This required building up my technical skills in big data analytics and setting up effective workflows for handling large datasets through automation, lots of it. Because of the highly granular of geospatial data, I think this post will provide an inside scoop to anyone looking to get started with geospatial analysis and help save time by avoiding some of the pitfalls I ran into.
 
 ## Project Overview 
 
-To really assess the effectiveness of Europe's circa 26% protected land in bolstering the region's nature reserves, we needed highly granular datasets for analysis that would:
+The issue of land protection in the face of rapid deforestation and urban sprawl has been a long-standing one, gaining further traction at COP15 with Europe pledging to protect 30% of its land by 2030. An even more recent extension of this was the groundbreaking Kunming-Montreal Global Biodiversity Framework. This pact, signed with a collective sense of urgency by nations around the globe, aims to protect a full 30 percent of our planet's land and water by 2030. It's a bold move to curb the alarming rate at which we're losing forest cover and diverse species. Europe, not one to lag behind, had by then already safeguarded 26 percent of its landscapes and waterways. 
+
+To quantitatively assess the effectiveness of Europe's circa 26% protected land in bolstering the region's nature reserves, we needed highly granular datasets for analysis that would:
 
 1) Tell us the land protection status of a given chunk of land.
 1) Measure the green-ing of that land overtime.
@@ -29,113 +29,82 @@ To really assess the effectiveness of Europe's circa 26% protected land in bolst
 
 ## Data Collection
 
-The raw vector and raster data was obtained fron several sources, for example, NDVI from Google Earth Engine, key agronomic data such as soil suitability from ESDAC, and Europe's protected sites from EEA. The national boundary shapefiles that acted as the 'canvas' of our datasets were obtained from Eurostat. Most these data were freely accessible (although some sources like ESDAC had a request and approval process, so anyone looking to follow along can readily do so. 
+The raw data for this project was obtained from several sources. For example, our primary measure of greenness, Normalized Difference in Vegetation Index (NDVI), was sourced from Google Earth Engine. In addition, key agronomic data such as soil suitability was received from ESDAC and Europe's protected sites coverage from EEA. The national boundary shapefiles that were the starting point of our datasets were obtained from Eurostat. Most these data were freely accessible from the relevant online websites (although some sources like ESDAC had a request and approval process) so I think anyone looking to follow along can readily do so. 
 
-National boundaries of EU countries were obtained fom We defined a unit of observation as a 300 metres by 300 metres grid cell that is constant across time. Grid cells divide European country's geographic areas into evenly spaced areas with corners given by latitude and longitude coordinates, and each grid cell is uniquely identified by the combination of its centroid x and y coordinate. These grids are generated for 32 countries listed in the CDDA database. 
+Big Data Tip #1: Being super-organized with geospatial data
 
-More generally, the process of creating geospatial datasets for these countries was... an interesting one. Our primary measure of greenness, Normalized Difference in Vegetation Index (NDVI), was constructed from Landsat images from 1985 through 2019. However, due to presence of dense cloud cover in the months, we constructed an algorithm that used a rolling window to select images that captured the clearest view of a given country's vegetation. 
+Unlike raw data in a typical .csv or similar format which can be housed in a simple two-folder set-up (raw and processed), geospatial data can quickly become difficult to keep track of as its processed down multiple layers of a data pipeline, especially when dealing with data from several sources, with each requiring its own processing in ArcGIS/R. 
 
-Moreover, mapping spatial vector data (mostly categorical data such as climate zones and bio-geographical regions) in ArcGIS Pro was tediously slow when done manually for larger country's with several million 300m x 300m grids cells. So instead doing these manually for 32 countries, I created an ArcGIS toolbox to automate this at the country-level and let it run while I enjoyed some peach ice tea (or worked on other more important tasks). 
+As a simple example, at the very basic level I started with a block of Eurostat national boundaries for Scandanavia in shapefile format. The raw shapefile had to be split up into the seperate countries manually in ArcGIS, then those separate components had to be stored locally. Further down the data pipeline, the shapefile was converted from shapefile format to .geojson and then finally .csv. All these raw, intermediate, and final data can be easily misplaced especially when dealing with several countries. This is especially troublesome when you want to head back to a previous step and change some processing steps but the original file can not be located! 
 
-Finally, the process of extracting raster data (data that utilizes grid-based structure for storing numerical values, mostly continuous phenomenon like NDVI, rainfall etc.) to the country datasets was extremely computationally intensive, even for relatively smaller countries like Switzerland. Eventually, I got fed of R's "vector memory exhausted" errors when running this on my computer and decided to push the process to a better computer; the "Cluster" -  Wharton's in-house High Performance Computing facility. That worked out nicely since the process went from taking several days for a single country to a few hours.
+The only way to pre-emptively mitigate against this is to establish an organized workflow from the beginning. Along with this, establishing a file naming convention such as _raw, _clean, _final denoting the various stages of processing of geospatial data. And finally, maintaining thorough documentationn at each step, detailing what was done. As an example, I established the following folder structure for this project (feel free to re-purpose for your own needs):
 
-The 32 final datasets corresponding to our sample of 32 EU countries contained 172 variables on forest cover, agronomic characteristics, and spatial information. To the tune of ~100 million data points in total.
+<insert worflow image>
 
-## Data Collection
+# Data Challenges
 
-The raw vector and raster data was obtained fron several sources, for example, NDVI from Google Earth Engine, key agronomic data such as soil suitability from ESDAC, and Europe's protected sites from EEA.
+We defined a unit of observation in the datasets as a 300 metres by 300 metres grid cell that is constant across time. Grid cells divide European country's geographic areas into evenly spaced areas with corners given by latitude and longitude coordinates, and each grid cell is uniquely identified by the combination of its centroid x and y coordinate. These grids were generated for 32 countries listed in the CDDA database. 
 
+More generally, the process of building geospatial datasets for EU countries on these grids was... an interesting one. Our primary measure of greenness, Normalized Difference in Vegetation Index (NDVI), was constructed from Landsat images from 1985 through 2019. However, due to presence of dense cloud cover in the months, we constructed an algorithm that used a rolling window to select images that captured the clearest view of a given country's vegetation. 
 
+Moreover, mapping spatial vector data (mostly categorical data such as climate zones and bio-geographical regions) in ArcGIS Pro was tediously slow when done manually for larger country's with several million 300m x 300m grids cells. So instead doing these manually for 32 countries, I created an ArcGIS toolbox to automate this at the country-level and let it run while I enjoyed some peach ice tea. Which leads me to my second tip;
 
+Big Data Tip #2: Spending time to save time (and headaches) by automating workflows
 
+An adage I learned from my ***Effective Programming for Economists*** course at Uni Bonn was that, if a particular line of code has to be run even more than once, define a function and use 'lapply' or 'for' loop to automate it away. Of course, this may not always be necessary but it certainly helped me with constructing these massive datasets. I exemplify these with two use cases:
 
-  I am happy to join with you today in what will go down in history as the greatest demonstration for freedom in the history of our nation.
+1) ArcGIS Pro Toolbox and ArcPy
 
-Five score years ago, a great American, in whose symbolic shadow we stand today, signed the Emancipation Proclamation. This momentous decree came as a great beacon light of hope to millions of Negro slaves who had been seared in the flames of withering injustice. It came as a joyous daybreak to end the long night of their captivity.
+It is likely that if you've worked with geospatial data before you may be familiar with this software. Given my programming-heavy background, I was a bit surprised that many of the online tutorials and guidance I got on using ArcGIS were framed with considerable focus of manual clicking, dragging, and general weazling through countless menus. 
 
-But one hundred years later, the Negro still is not free. One hundred years later, the life of the Negro is still sadly crippled by the manacles of segregation and the chains of discrimination. One hundred years later, the Negro lives on a lonely island of poverty in the midst of a vast ocean of material prosperity. One hundred years later, the Negro is still languished in the corners of American society and finds himself an exile in his own land. And so we've come here today to dramatize a shameful condition.
+This seemed problematic for a couple of reasons: first, obviously due to human error - there is always a chance when doing spatial computations manually that one might select the wrong attribute for a spatial join, set the wrong coordinate reference system, or forget to select certain parameters. Second, what if I need to apply a similar set of spatial processes across multiple countries? This would not only be very time-consuming but also magnify the risk of the previous point.
 
-In a sense we've come to our nation's capital to cash a check. When the architects of our republic wrote the magnificent words of the Constitution and the Declaration of Independence, they were signing a promissory note to which every American was to fall heir. This note was a promise that all men, yes, black men as well as white men, would be guaranteed the "unalienable Rights" of "Life, Liberty and the pursuit of Happiness." It is obvious today that America has defaulted on this promissory note, insofar as her citizens of color are concerned. Instead of honoring this sacred obligation, America has given the Negro people a bad check, a check which has come back marked "insufficient funds."
+The trick I learned here is to automate series of spatial processes with the convenient toolbox in ArcGIS or alternatively to write the commands in ArcPy. The Modelbuilder tool in ArcGIS allows you to create DAGs (Directed Acyclic Graphs) to represent geoprocessing workflows and tools. I found these to be a visually appealing and logical way to show the processing steps applied to a country's shapefile, ensuring the ordering of the steps made sense, for example, by repairing the original protected sites shapefile, repairing it to fix topology errors, and then spatially joining it to the country shapefile join. These DAGs also conviently double as documentation, which is an added benefit.
 
-But we refuse to believe that the bank of justice is bankrupt. We refuse to believe that there are insufficient funds in the great vaults of opportunity of this nation. And so, we've come to cash this check, a check that will give us upon demand the riches of freedom and the security of justice.
+2) Functions for Raster Processing in R
 
-We have also come to this hallowed spot to remind America of the fierce urgency of Now. This is no time to engage in the luxury of cooling off or to take the tranquilizing drug of gradualism. Now is the time to make real the promises of democracy. Now is the time to rise from the dark and desolate valley of segregation to the sunlit path of racial justice. Now is the time to lift our nation from the quicksands of racial injustice to the solid rock of brotherhood. Now is the time to make justice a reality for all of God's children.
+During my database construction, I ran into several multi-band rasters which captured some geo-physical process overtime. For example. we wanted to include rainfall history for every grid cell from 1985 through 2019, and so this involved extracting the corresponding band from the rainfall raster. This is a tiny snippet of what I came across in an initial build of the raster extraction script:
 
-It would be fatal for the nation to overlook the urgency of the moment. This sweltering summer of the Negro's legitimate discontent will not pass until there is an invigorating autumn of freedom and equality. Nineteen sixty-three is not an end, but a beginning. And those who hope that the Negro needed to blow off steam and will now be content will have a rude awakening if the nation returns to business as usual. And there will be neither rest nor tranquility in America until the Negro is granted his citizenship rights. The whirlwinds of revolt will continue to shake the foundations of our nation until the bright day of justice emerges.
+rainfall1985 <- raster("C:/Users/Tristan/Desktop/ForestTransition/rain/rain_1985.tif")
+rainfall1986 <- raster("C:/Users/Tristan/Desktop/ForestTransition/rain/rain_1985.tif")
+rainfall1987 <- raster("C:/Users/Tristan/Desktop/ForestTransition/rain/rain_1987.tif")
 
-But there is something that I must say to my people, who stand on the warm threshold which leads into the palace of justice: In the process of gaining our rightful place, we must not be guilty of wrongful deeds. Let us not seek to satisfy our thirst for freedom by drinking from the cup of bitterness and hatred. We must forever conduct our struggle on the high plane of dignity and discipline. We must not allow our creative protest to degenerate into physical violence. Again and again, we must rise to the majestic heights of meeting physical force with soul force.
-
-The marvelous new militancy which has engulfed the Negro community must not lead us to a distrust of all white people, for many of our white brothers, as evidenced by their presence here today, have come to realize that their destiny is tied up with our destiny. And they have come to realize that their freedom is inextricably bound to our freedom.
-
-We cannot walk alone.
-
-And as we walk, we must make the pledge that we shall always march ahead.
-
-We cannot turn back.
-
-There are those who are asking the devotees of civil rights, "When will you be satisfied?" We can never be satisfied as long as the Negro is the victim of the unspeakable horrors of police brutality. We can never be satisfied as long as our bodies, heavy with the fatigue of travel, cannot gain lodging in the motels of the highways and the hotels of the cities. We cannot be satisfied as long as the negro's basic mobility is from a smaller ghetto to a larger one. We can never be satisfied as long as our children are stripped of their self-hood and robbed of their dignity by signs stating: "For Whites Only." We cannot be satisfied as long as a Negro in Mississippi cannot vote and a Negro in New York believes he has nothing for which to vote. No, no, we are not satisfied, and we will not be satisfied until "justice rolls down like waters, and righteousness like a mighty stream."
-
-I am not unmindful that some of you have come here out of great trials and tribulations. Some of you have come fresh from narrow jail cells. And some of you have come from areas where your quest -- quest for freedom left you battered by the storms of persecution and staggered by the winds of police brutality. You have been the veterans of creative suffering. Continue to work with the faith that unearned suffering is redemptive. Go back to Mississippi, go back to Alabama, go back to South Carolina, go back to Georgia, go back to Louisiana, go back to the slums and ghettos of our northern cities, knowing that somehow this situation can and will be changed.
-
-Let us not wallow in the valley of despair, I say to you today, my friends.
-
-And so even though we face the difficulties of today and tomorrow, I still have a dream. It is a dream deeply rooted in the American dream.
-
-I have a dream that one day this nation will rise up and live out the true meaning of its creed: "We hold these truths to be self-evident, that all men are created equal."
-
-I have a dream that one day on the red hills of Georgia, the sons of former slaves and the sons of former slave owners will be able to sit down together at the table of brotherhood.
-
-I have a dream that one day even the state of Mississippi, a state sweltering with the heat of injustice, sweltering with the heat of oppression, will be transformed into an oasis of freedom and justice.
-
-I have a dream that my four little children will one day live in a nation where they will not be judged by the color of their skin but by the content of their character.
-
-I have a **dream** today!
-
-I have a dream that one day, down in Alabama, with its vicious racists, with its governor having his lips dripping with the words of "interposition" and "nullification" -- one day right there in Alabama little black boys and black girls will be able to join hands with little white boys and white girls as sisters and brothers.
-
-I have a **dream** today!
-
-I have a dream that one day every valley shall be exalted, and every hill and mountain shall be made low, the rough places will be made plain, and the crooked places will be made straight; "and the glory of the Lord shall be revealed and all flesh shall see it together."
-
-This is our hope, and this is the faith that I go back to the South with.
-
-With this faith, we will be able to hew out of the mountain of despair a stone of hope. With this faith, we will be able to transform the jangling discords of our nation into a beautiful symphony of brotherhood. With this faith, we will be able to work together, to pray together, to struggle together, to go to jail together, to stand up for freedom together, knowing that we will be free one day.
-
-And this will be the day -- this will be the day when all of God's children will be able to sing with new meaning:
-
->  My country 'tis of thee, sweet land of liberty, of thee I sing.
->  
->  Land where my fathers died, land of the Pilgrim's pride,
->  
->  From every mountainside, let freedom ring!
+It is easy to spot the mistake now (spoiler - the rain_1985 raster is accidentally being mapped onto the variable for 1986). But, at the time, I spent a lot of hours debugging an issue in the analysis which was traced down to this line buried within some 1600 other lines of code. The best practice to avoid this kind of situation and possibility of human error would be to apply a loop or function that does away with repeated lines of code. Here's what I changed this to:
 
 
-And if America is to be a great nation, this must become true.
+for (year in rainfall_years) {
+  raster_path <- paste0("../data_Raster/GIS/eu_rain_ERA_5/rain_", year, ".tif")
+  raster_name <- paste0("rainfall", year)
+  assign(raster_name, raster(raster_path))
+  country_grids[,paste0("rain",year)] <- exact_extract(eval(as.symbol(paste0("rainfall",year))),country_grids,'mean')
+}
 
-And so let freedom ring from the prodigious hilltops of New Hampshire.
+This alternative condensed 25 lines of code into a simple loop and avoided any hard-coding that might be prone to human error. I highly recommend adopting such practices in your own workflow when dealing with multi-band rasters or generally with rasters that require repetitive processing steps (which in this case is just a raster being extracted to a country's grid)
+  
+## Geospatial Data Construction
 
->  Let freedom ring from the mighty mountains of New York.
->  
->  Let freedom ring from the heightening Alleghenies of Pennsylvania.
->  
->  Let freedom ring from the snow-capped Rockies of Colorado.
->  
->  Let freedom ring from the curvaceous slopes of California.
+There were several scripts involved in my data pipeline. Although I won't push into too much detail here (I defer to the project's replication package, which offers a thorough step-by-step guide), I would like to point to one script in particular which is the raster extraction script. It is likely that if you're working with geospatial data, you may have wanted to map a raster's value onto a shapefile (essentially converting a TIFF file into .csv columns). As it turned out, this ended up being the most challenging part of data pipeline.
 
+The reason for this is that the processes of extracting raster data (data that utilizes grid-based structure for storing numerical values, mostly continuous phenomenon like NDVI, rainfall as outline previously etc.) to the country datasets was computationally intensive, even for relatively smaller countries like Switzerland. Eventually, I got fed up of R's "vector memory exhausted" errors when running this on my computer and decided to push the process to a better computer; to the "Cluster" -  Wharton's High Performance Computing (HPC) facility. 
 
-But not only that:
+Big Data Tip #3; Leveraging High Performance Computing
 
->  Let freedom ring from Stone Mountain of Georgia.
->  
->  Let freedom ring from Lookout Mountain of Tennessee.
->  
->  Let freedom ring from every hill and molehill of Mississippi.
->  
->  From every mountainside, let freedom ring.
+The use of Wharton's HPC drastically changed my project's timeline since tasks instantly went from taking several days for the raster extraction of a single country to just a few hours. However, in case you don't have access to HPC, I think some of the concepts here can still help in terms of getting the most of out existing resources:
 
+1) Array Jobs: Typically, multi-core processing using the 'parallel' library in R with some combination of 'mclapply' would've done the job for a big chunk of the computationally intensive monte carlo simulation I did during my masters thesis research. However, for handling geospatial data, I didn't just need more processing power, but also greater access to RAM. I achieved this by splitting up by raster extraction into 12 parts - since each part was independent of each other (that is the the output of any given part was not an input for any other) and running each of them simultaneusly using Wharton HPC's array job functionality. This conveniently allowed me speed up my workflow by a factor 4. The only caveat was that I had to merge the output from the individual parts back together into one collective dataset. But this merging itself took only a few minutes.
 
-And when this happens, and when we allow freedom ring, when we let it ring from every village and every hamlet, from every state and every city, we will be able to speed up that day when all of God's children, black men and white men, Jews and Gentiles, Protestants and Catholics, will be able to join hands and sing in the words of the old Negro spiritual:
+2) UNIX Command Line: I severely disliked using UNIX command line tools during my undergraduate 'Intro to Computer Science class' at Emory, but realized when working with HPC on geospatial data that it can  greatly enhance your efficiency when working with large datasets, even without access to high-performance computing resources. For example:
 
-*Free at last! Free at last!*
+a) File Manipulation: UNIX commands like grep, awk, and sed are  powerful for searching, filtering, and transforming data. For example, you can use grep to extract specific lines from text files, awk to perform complex text processing tasks, and sed to search and replace text patterns (i.e. making corrections that applies to several R scripts becomes quick and easy)
 
-*Thank God Almighty, we are free at last!*
+b) Batch Processing: You can use shell scripting to automate repetitive tasks and perform batch processing on multiple files. By writing simple shell scripts, you can chain together UNIX commands to create powerful data processing pipelines. Just like with this project, I created a batch pipeline at multiple levels: running a batch of R scripts, for a batch of countries, then merging all the individual components for each country into a country dataset.
+
+d) Remote Access: If you're working on a remote server or cloud platform, SSH (Secure Shell) allows you to securely connect to the remote machine and execute commands remotely. This can be useful for running computationally intensive tasks on a server with more resources than your local machine, with the benefit of being able to access it anywhere. 
+
+### Geospatial Analysis for the Future
+
+The 32 final datasets created as part of this project corresponded to our sample of 32 EU countries contained 172 variables on forest cover, agronomic characteristics, and spatial information. To the tune of ~100 million data points in total. After employing a staggered difference-in-differences design using these data, we found that the protected area policies did not have a meaningful impact on either vegetation cover or economic activity measured by nightlights across various countries and time periods. The study suggested that land selected for protection was not under immediate threat, hence the limited impact.
+
+This project underscrored that the role of comprehensive and granular data analysis is crucial in evaluating the real-world impact of policy measures. Despite the ambitious targets set by EU policies, our findings highlight the importance of not just protecting more land but focusing on areas that truly require intervention to prevent degradation. It also serves as a reminder of the potential disconnect between policy goals and on-the-ground outcomes, urging a more strategic approach that aligns conservation efforts with ecological needs and economic realities.
+
+In conclusion, while the initial results may seem disheartening, they provide valuable insights for refining conservation strategies. Moreover, this project underscored the importance of leveraging massive amounts of high-resolution geospatial data to understand the real-world impacts of environmental policies. By employing advanced data management and analysis techniques, such as cloud computing and high-performance computing clusters, we were able to handle and analyze approximately 100 million data points efficiently. This approach not only facilitated a deeper understanding of policy effectiveness but also highlighted the critical role of strategic data analysis in environmental conservation efforts.
