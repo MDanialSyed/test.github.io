@@ -7,8 +7,8 @@ date: 2024-04-27 10:18:00
 tags: GIS
 subclass: 'post tag-GIS'
 logo: 'assets/images/ds.png'
-author: martin
-categories: martin
+author: danial
+categories: danial
 ---
 
 ## Introduction
