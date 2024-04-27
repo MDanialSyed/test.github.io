@@ -3,7 +3,7 @@ layout: post
 cover: 'assets/images/cover4.jpg'
 navigation: True
 title: Geospatial Data Science for Evaluating Land Protection Policies
-date: 1963-08-28 10:18:00
+date: 2024-04-27 10:18:00
 tags: GIS
 subclass: 'post tag-GIS'
 logo: 'assets/images/ds.png'
