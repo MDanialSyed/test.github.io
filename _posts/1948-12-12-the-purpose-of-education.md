@@ -10,13 +10,16 @@ logo: 'assets/images/DS.png'
 author: danial
 categories: danial
 ---
+In 2022/23, I had the great privilege of joining the United Nations University's Institute of Environment and Human Security (UNU-EHS) in Bonn, Germany, as a consultant researcher. At the time, I was a Uni Bonn student working on my master thesis on machine learning for causal inference. The Transformative Urban Coalitions (TUC) team at UNU-EHS was conducting research on mindsets regarding urban sustainability transformation in Latin America and was looking for someone to generate insights on this through survey analysis. And so they brought me on onboard in July 2022. 
 
-In the study titled "Identifying Mindsets for Urban Sustainability Transformation: Insights from Urban Labs," my colleagues and I embarked on a research project to understand how different mindsets influence urban sustainability initiatives. We gathered data from participants in Urban Labs across Argentina, Brazil, and Mexico, employing advanced machine learning techniques to analyze the data and identify distinct stakeholder personas. Here's a detailed overview of our methodology, focusing particularly on our innovative use of Hierarchical Clustering on Principal Components (HCPC) for data analysis and the deep insights we gained into the distinct personas involved in urban sustainability.
+This post describes the application of advanced machine learning for statistical survey analysis. It is exemplified by the research I conducted in TUC under the guidance of my mentor, and later co-author, Dr. Guerra, which culminated in the ***Sustainability Science*** publication titled "Identifying Mindsets for Urban Sustainability Transformation: Insights from Urban Labs". 
+
+As a quick background, my colleagues and I wanted to understand how different mindsets influence urban sustainability initiatives. We gathered data from participants in Urban Labs across Argentina, Brazil, and Mexico, employing advanced machine learning techniques to analyze the data and identify distinct stakeholder personas. Here's a detailed overview of our methodology, focusing particularly on our innovative use of Hierarchical Clustering on Principal Components (HCPC) for data analysis and the deep insights we gained into the distinct personas involved in urban sustainability.
 
 ## **Data Analysis and Methodological Approach**
 
 ### **Survey Design and Data Collection:**
-We conducted a detailed survey involving 153 participants from five Urban Labs, which included diverse stakeholders such as government officials, community members, researchers, and representatives from the private sector. The data collection was executed through computer-assisted telephone interviews over two rounds, ensuring a comprehensive gathering of perspectives.
+We conducted a detailed survey involving 153 participants from five Urban Labs, which included diverse stakeholders such as government officials, community members, researchers, and representatives from the private sector. The data collection was executed through computer-assisted telephone interviews over two rounds, ensuring a comprehensive view of different perspectives.
 
 ### **Questionnaire:**
 The survey was carefully designed with 40 questions aimed at capturing a range of mindset dimensions—beliefs, emotions, perceptions, attitudes, values, and worldviews—related to climate change and urban sustainability. These questions were crafted based on a review of existing literature and were adapted to fit the context of our study, using both quantitative and categorical variables.
@@ -48,7 +51,3 @@ Our advanced machine learning-based analysis, particularly the use of HCPC, reve
 
 ## **Conclusion:**
 We demonstrated the application of sophisticated machine learning techniques, particularly HCPC, in the field of urban sustainability, providing a methodological blueprint for future research. This study underscores the importance of integrating advanced data analytics to deeply understand the complex interplay of human factors in urban environmental initiatives. The insights gained not only shed light on the current state of urban sustainability mindsets but also pave the way for targeted interventions that can drive more profound and effective transformations in urban settings worldwide.
-
-The use of HCPC in our study highlights the potential of
-
- machine learning to transform our approach to understanding and tackling urban sustainability challenges, offering a robust, data-driven foundation for future endeavors in this vital area.
