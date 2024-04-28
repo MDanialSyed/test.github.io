@@ -3,12 +3,12 @@ layout: post
 cover: 'assets/images/normality.png'
 navigation: True
 title: Causal Inference Using Random Forests and LASSO
-date: 1912-07-24 10:18:00
+date: 2023-05-24 10:18:00
 tags: fiction
 subclass: 'post tag-fiction'
 logo: 'assets/images/ghost.png'
-author: edgar
-categories: edgar
+author: danial
+categories: danial
 ---
 
 It is no secret that I'm a big supporter of using machine learning for causal inference. My interest in this field can be traced back to a ***Computational Statistics*** course I took with Marina Khismatullina at Uni Bonn in 2021. I was intrigued by how well machine learning method peformed in predictive scenarios with a large number of covariates and enjoyed learning comparing different ML models such as LASSO, Random Forest, XGBoost, and Support Vector Machines. We also learned about model training/test, cross-validation, and the bias-variance trade-off, where ML methods tend to sacrifice a little bit of bias for lower variance in their point estimates.
