@@ -59,7 +59,7 @@ This seemed problematic for a couple of reasons: first, obviously due to human e
 
 The trick I learned here is to automate series of spatial processes with the convenient toolbox in ArcGIS or alternatively to write the commands in ArcPy. The Modelbuilder tool in ArcGIS allows you to create DAGs (Directed Acyclic Graphs) to represent geoprocessing workflows and tools. I found these to be a visually appealing and logical way to show the processing steps applied to a country's shapefile, ensuring the ordering of the steps made sense, for example, by repairing the original protected sites shapefile, repairing it to fix topology errors, and then spatially joining it to the country shapefile join. These DAGs also conveniently double as documentation, which is an added benefit.
 
-<img src="/assets/images/DAG.png" alt="Book logo" width="100"/>
+<img src="/assets/images/DAG.png" alt="Book logo" width="300"/>
 
 2) Functions for Raster Processing in R
 
