@@ -6,7 +6,7 @@ title: Convolutional Neural Networks for Predicting Poverty in Sparse Data Setti
 date: 2023-02-29 10:18:00
 tags: neural networks 
 subclass: 'post tag-test tag-content'
-logo: 'assets/images/ds.png'
+logo: 'assets/images/ghost.png'
 author: Danial Syed
 categories: Machine Learning
 ---

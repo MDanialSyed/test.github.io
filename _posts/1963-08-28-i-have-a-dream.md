@@ -6,7 +6,7 @@ title: Geospatial Data Science for Evaluating Land Protection Policies
 date: 2024-04-27 10:18:00
 tags: GIS
 subclass: 'post tag-GIS'
-logo: 'assets/images/ds.png'
+logo: 'assets/images/ghost.png'
 author: danial
 categories: danial
 ---
