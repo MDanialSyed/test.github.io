@@ -37,7 +37,7 @@ As a simple example, at the very basic level I started with a block of Eurostat 
 
 The only way to pre-emptively mitigate against this is to establish an organized workflow from the beginning. Along with this, establishing a file naming convention such as _raw, _clean, _final denoting the various stages of processing of geospatial data. And finally, maintaining thorough documentation at each step, detailing what was done. As an example, I established the following folder structure for this project (feel free to re-purpose for your own needs):
 
-<img src="/assets/images/workspace_structure.png" alt="Book logo" width="150" height="auto">
+<img src="/assets/images/workspace_structure.png" alt="Book logo" width="300" height="auto">
 
 # Data Challenges
 
