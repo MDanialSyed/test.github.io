@@ -11,8 +11,6 @@ author: danial
 categories: danial
 ---
 
-## Introduction
-
 Without a doubt the best part about joining Wharton was the exposure to some of the most innovative methods being deployed at the current frontiers of economic analysis in energy and environment. That applied also to my first week in the Business Economics and Public Policy department. Because, for my very first project, I had the pportunity to dive head-first into a challenging geospatial economics project. For this project, my principal investigator, Arthur van Benthem, was seeking to answer the question: to what extent have EU land protection policies actually contributed to the continent's greening and biodiversity?
 
 Although I had previously worked with geospatial data, namely through my application of Convolutional Neural Networks to satellite images for poverty prediction  in Malawi, I ran into several fun challenges in this project simply because of the scale and richness of data involved. And when I say scale, I mean constructing datasets to the tune of ~100 million data points in total. This required building up my technical skills in big data analytics and setting up effective workflows for handling large datasets through automation, lots of it. Because of the highly granular of geospatial data, I think this post will provide an inside scoop to anyone looking to get started with geospatial analysis and help save time by avoiding some of the pitfalls I ran into.
