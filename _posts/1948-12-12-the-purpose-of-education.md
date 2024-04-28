@@ -6,7 +6,7 @@ title: Cluster Analysis for Urban Sustainability Transformation
 date: 2023-07-11 10:18:00
 tags: speeches fiction
 subclass: 'post tag-speeches'
-logo: 'assets/images/DS.png'
+logo: 'assets/images/ds.png'
 author: danial
 categories: danial
 ---
