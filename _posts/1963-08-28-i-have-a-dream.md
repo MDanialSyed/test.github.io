@@ -29,7 +29,7 @@ To quantitatively assess the effectiveness of Europe's circa 26% protected land 
 
 The raw data for this project was obtained from several sources. For example, our primary measure of greenness, Normalized Difference in Vegetation Index (NDVI), was sourced from Google Earth Engine. In addition, key agronomic data such as soil suitability was received from ESDAC and Europe's protected sites coverage from EEA. The national boundary shapefiles that were the starting point of our datasets were obtained from Eurostat. Most these data were freely accessible from the relevant online websites (although some sources like ESDAC had a request and approval process) so I think anyone looking to follow along can readily do so. 
 
-Big Data Tip #1: Being super-organized with geospatial data.
+#### Big Data Tip #1: Being super-organized with geospatial data.
 
 Unlike raw data in a typical .csv or similar format which can be housed in a simple two-folder set-up (raw and processed), geospatial data can quickly become difficult to keep track of as its processed down multiple layers of a data pipeline, especially when dealing with data from several sources, with each requiring its own processing in ArcGIS/R. 
 
@@ -37,7 +37,7 @@ As a simple example, at the very basic level I started with a block of Eurostat 
 
 The only way to pre-emptively mitigate against this is to establish an organized workflow from the beginning. Along with this, establishing a file naming convention such as _raw, _clean, _final denoting the various stages of processing of geospatial data. And finally, maintaining thorough documentation at each step, detailing what was done. As an example, I established the following folder structure for this project (feel free to re-purpose for your own needs):
 
-![Book logo](/assets/images/workspace_structure.png)
+<img src="/assets/images/workspace_structure.png" alt="Book logo" width="150" height="auto">
 
 # Data Challenges
 
@@ -47,7 +47,7 @@ More generally, the process of building geospatial datasets for EU countries on 
 
 Moreover, mapping spatial vector data (mostly categorical data such as climate zones and bio-geographical regions) in ArcGIS Pro was tediously slow when done manually for larger country's with several million 300m x 300m grids cells. So instead doing these manually for 32 countries, I created an ArcGIS toolbox to automate this at the country-level and let it run while I enjoyed some peach iced tea. Which leads me to my second tip.
 
-Big Data Tip #2: Spending time to save time (and headaches) by automating workflows.
+#### Big Data Tip #2: Spending time to save time (and headaches) by automating workflows.
 
 An adage I learned from my ***Effective Programming for Economists*** course at Uni Bonn was that, if a particular line of code has to be run even more than once, define a function and use 'lapply' or 'for' loop to automate it away. Of course, this may not always be necessary, but it certainly helped me with constructing these massive datasets. I exemplify these with two use cases:
 
@@ -59,7 +59,7 @@ This seemed problematic for a couple of reasons: first, obviously due to human e
 
 The trick I learned here is to automate series of spatial processes with the convenient toolbox in ArcGIS or alternatively to write the commands in ArcPy. The Modelbuilder tool in ArcGIS allows you to create DAGs (Directed Acyclic Graphs) to represent geoprocessing workflows and tools. I found these to be a visually appealing and logical way to show the processing steps applied to a country's shapefile, ensuring the ordering of the steps made sense, for example, by repairing the original protected sites shapefile, repairing it to fix topology errors, and then spatially joining it to the country shapefile join. These DAGs also conveniently double as documentation, which is an added benefit.
 
-![Book logo](/assets/images/DAG.png)
+<img src="/assets/images/DAG.png" alt="Book logo" width="100"/>
 
 2) Functions for Raster Processing in R
 
@@ -87,7 +87,7 @@ There were several scripts involved in my data pipeline. Although I won't push i
 
 The reason for this is that the processes of extracting raster data (data that utilizes grid-based structure for storing numerical values, mostly continuous phenomenon like NDVI, rainfall as outline previously etc.) to the country datasets was computationally intensive, even for relatively smaller countries like Switzerland. Eventually, I got fed up of R's "vector memory exhausted" errors when running this on my computer and decided to push the process to a better computer; to the "Cluster" - Wharton’s High Performance Computing (HPC) facility. 
 
-Big Data Tip #3; Leveraging High Performance Computing
+#### Big Data Tip #3; Leveraging High Performance Computing
 
 The use of Wharton's HPC drastically changed my project's timeline since tasks instantly went from taking several days for the raster extraction of a single country to just a few hours. However, in case you don't have access to HPC, I think some of the concepts here can still help in terms of getting the most of out existing resources:
 

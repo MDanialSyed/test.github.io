@@ -30,7 +30,7 @@ Our data analysis involved a two-tiered approach:
 1. **Descriptive Statistics**: We first explored the dataset through descriptive statistics to understand basic trends and distributions across the various Urban Labs.
 2. **Hierarchical Clustering on Principal Components (HCPC)**: We applied HCPC, a sophisticated machine learning technique that combines Principal Component Analysis (PCA) with hierarchical clustering. This method is particularly effective for datasets like ours that contain mixed types of data, allowing us to identify naturally occurring groups in our data based on shared characteristics in mindset-related responses.
 
-![Book logo](/assets/images/cluster_map.png)
+<img src="/assets/images/cluster_map.png" alt="Gaussian Mixture Model separating nightlight intensity" class="smaller-image">
 
 ### **Detailed HCPC Analysis:**
 - **Principal Component Analysis (PCA)**: Before clustering, we used PCA to reduce the dimensionality of our data, which clarifies the relationships between variables and enhances the interpretability of our clustering analysis. PCA helps to condense the data into principal components that capture the most variance and patterns within the dataset.
