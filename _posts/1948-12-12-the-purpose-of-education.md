@@ -19,7 +19,7 @@ As a quick background, my colleagues and I wanted to understand how different mi
 
 ## **Data Analysis and Methodological Approach**
 
-### **Survey Design and Data Collection: **
+### **Survey Design and Data Collection:** 
 We conducted a detailed survey involving 153 participants from five Urban Labs, which included diverse stakeholders such as government officials, community members, researchers, and representatives from the private sector. The data collection was executed through computer-assisted telephone interviews over two rounds, ensuring a comprehensive view of different perspectives.
 
 ### **Questionnaire:**
